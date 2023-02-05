@@ -13,7 +13,7 @@ let package = Package(
     .package(url: "https://github.com/swhitty/SwiftDraw.git", from: "0.13.3"),
   ],
   targets: [
-    .target(name: "CreateXCAssets",
-      dependencies: ["Fork", "SwiftDraw"]),
+    .target(name: "CreateXCAssets", dependencies: ["Fork", "SwiftDraw"]),
+    .testTarget(name: "CreateXCAssetsTests", dependencies: ["CreateXCAssets"]),
   ]
 )
