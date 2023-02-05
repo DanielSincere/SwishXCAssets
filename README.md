@@ -36,4 +36,4 @@ import SwishXCAssets
 ## Full example
 
 The [ios-base](https://github.com/0xOpenBytes/ios-base) template app uses this library to generate an App Icon. An App Icon is needed to upload to TestFlight.
-https://github.com/0xOpenBytes/ios-base/blob/fd685a65b265337c1e7bbe2980c910bf14133a7d/Swish/Package.swift#L23
+https://github.com/0xOpenBytes/ios-base/blob/9fe9836bb5e771d70ceb34114ec1e95745f2263d/Swish/Package.swift#L23
