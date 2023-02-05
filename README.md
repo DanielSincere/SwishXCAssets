@@ -22,10 +22,10 @@ In your Swish's `Package.swift`
 And the code for the `appicon` target might look like
 
 ```swift
-  import SwishXCAssets
+import SwishXCAssets
 
- @main
- struct AppIconMain {
+@main
+struct AppIconMain {
   static func main() async throws {
     let svgPath = "path/to/AppIcon.svg"
     try await AppIcon(inputSVG: svgPath, outputDir: "MyApp").render()
