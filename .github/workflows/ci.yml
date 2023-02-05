@@ -17,6 +17,11 @@ jobs:
             swift: "5.7"
 
     steps:
+      - run: swift --version
       - uses: actions/checkout@v3
       - run: swift test
+      - uses: actions/upload-artifact@v3
+        with:
+          name: sample-xcassets
+          path: SampleApp
       - run: swift build -c release
