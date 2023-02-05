@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "fork",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/0xLeif/Fork.git",
+      "state" : {
+        "revision" : "7682617694979adcf1f8b08d1507c865cad81ae4",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "swiftdraw",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swhitty/SwiftDraw.git",
+      "state" : {
+        "revision" : "cabfd9fe8199fedeb75f259fb30268cfbc2042c3",
+        "version" : "0.13.3"
+      }
+    }
+  ],
+  "version" : 2
+}
