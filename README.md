@@ -22,7 +22,7 @@ In your Swish's `Package.swift`
 And the code for the `appicon` target might look like
 
 ```swift
-import SwishXCAssets
+  import SwishXCAssets
 
  @main
  struct AppIconMain {
