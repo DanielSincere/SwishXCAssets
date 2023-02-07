@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "Swish",
+  name: "SwishXCAssets",
   platforms: [.macOS(.v12)],
   products: [
     .library(name: "SwishXCAssets", targets: ["SwishXCAssets"]),
