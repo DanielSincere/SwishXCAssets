@@ -24,7 +24,7 @@ public struct AppIcon {
       .reduce(Set<Image.Idiom>()) { $0.union($1) }
       .flatMap { $0.images }
     
-    try await images.asyncForEach { size in
+    try images.forEach { size in
       let pngPath = "\(outputDir)/AppIcon.xcassets/AppIcon.appiconset/\(size.filename)"
       let image = svg.rasterize(with: size.cgSize, scale: size.data.scale.decimal.truncated)
       guard let pngData = image.pngData else {

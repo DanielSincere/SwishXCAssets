@@ -2,7 +2,7 @@ import Foundation
 
 extension Image {
   enum Idiom: String, Codable {
-    case mac, iphone, ipad, iosMarketing = "ios-marketing"
+    case mac, iphone, ipad, iosMarketing = "ios-marketing", universal
     
     var images: Set<Image> {
       Image.allCases.lazy
