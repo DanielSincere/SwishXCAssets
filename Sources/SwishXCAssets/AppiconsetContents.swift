@@ -1,4 +1,5 @@
 import Foundation
+
 struct AppiconsetContents: Encodable {
   let images: [Image]
   let info: Info = Info()

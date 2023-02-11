@@ -36,7 +36,9 @@ public struct AppIcon {
     
     try XCAssetsContents.string.data(using: .utf8)!.write(to: URL(fileURLWithPath: "\(outputDir)/AppIcon.xcassets/Contents.json"))
     
-    let appiconsetContents = try JSONEncoder().encode(AppiconsetContents(images: images))
+    let encoder = JSONEncoder()
+    encoder.outputFormatting = .prettyPrinted
+    let appiconsetContents = try encoder.encode(AppiconsetContents(images: images))
     try appiconsetContents.write(to: URL(fileURLWithPath: "\(outputDir)/AppIcon.xcassets/AppIcon.appiconset/Contents.json"))
   }
   
