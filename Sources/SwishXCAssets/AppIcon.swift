@@ -2,6 +2,7 @@ import Foundation
 import Fork
 import SwiftDraw
 
+
 public struct AppIcon {
 
   let inputSVG: String, outputDir: String
@@ -10,7 +11,7 @@ public struct AppIcon {
     self.outputDir = outputDir
   }
 
-  public func render() async throws {
+  public func render(platforms: Set<Platform>) async throws {
     try FileManager.default.createDirectory(atPath: "\(outputDir)/AppIcon.xcassets/AppIcon.appiconset", withIntermediateDirectories: true)
 
 
@@ -18,7 +19,12 @@ public struct AppIcon {
       throw Errors.couldNotLoadAppIcon(path: inputSVG)
     }
 
-    try await AppIcon.Size.allCases.asyncForEach { size in
+    let images = platforms
+      .map { $0.idioms }
+      .reduce(Set<Image.Idiom>()) { $0.union($1) }
+      .flatMap { $0.images }
+    
+    try await images.asyncForEach { size in
       let pngPath = "\(outputDir)/AppIcon.xcassets/AppIcon.appiconset/\(size.filename)"
       let image = svg.rasterize(with: size.cgSize, scale: size.data.scale.decimal.truncated)
       guard let pngData = image.pngData else {
@@ -27,13 +33,16 @@ public struct AppIcon {
       try pngData.write(to: URL(fileURLWithPath: pngPath))
     }
 
-    try XCAssetsJSON.xcassetsContents.data(using: .utf8)!.write(to: URL(fileURLWithPath: "\(outputDir)/AppIcon.xcassets/Contents.json"))
-    try XCAssetsJSON.appiconsetContents.data(using: .utf8)!.write(to: URL(fileURLWithPath: "\(outputDir)/AppIcon.xcassets/AppIcon.appiconset/Contents.json"))
+    
+    try XCAssetsContents.string.data(using: .utf8)!.write(to: URL(fileURLWithPath: "\(outputDir)/AppIcon.xcassets/Contents.json"))
+    
+    let appiconsetContents = try JSONEncoder().encode(AppiconsetContents(images: images))
+    try appiconsetContents.write(to: URL(fileURLWithPath: "\(outputDir)/AppIcon.xcassets/AppIcon.appiconset/Contents.json"))
   }
   
   public enum Errors: Error, LocalizedError {
     case couldNotLoadAppIcon(path: String)
-    case couldNotRenderAppIcon(size: AppIcon.Size)
+    case couldNotRenderAppIcon(size: Image)
     
     public var errorDescription: String? {
       switch self {

@@ -1,9 +1,10 @@
 import Foundation
 
-extension AppIcon.Size {
+extension Image {
   struct Data {
     let baseWidth: Decimal
-    let scale: AppIcon.Scale
+    let scale: Image.Scale
+    let idiom: Image.Idiom
     
     var pixelWidth: Decimal {
       switch scale {
@@ -13,8 +14,8 @@ extension AppIcon.Size {
       }
     }
     
-    init(_ baseWidth: Decimal, _ scale: AppIcon.Scale) {
-      self.baseWidth = baseWidth; self.scale = scale
+    init(_ baseWidth: Decimal, _ scale: Image.Scale, _ idiom: Image.Idiom) {
+      self.baseWidth = baseWidth; self.scale = scale; self.idiom = idiom
     }
   }
 }

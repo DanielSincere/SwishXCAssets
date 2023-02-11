@@ -1,6 +1,6 @@
 import Foundation
 
-extension AppIcon {
+extension Image {
   enum Scale {
     case one
     case two
@@ -14,6 +14,14 @@ extension AppIcon {
       }
     }
     
+    var jsonLabel: String {
+      switch self {
+      case .one: return "1x"
+      case .two: return "2x"
+      case .three: return "3x"
+      }
+    }
+    
     var decimal: Decimal {
       switch self {
       case .one: return 1
@@ -22,4 +30,5 @@ extension AppIcon {
       }
     }
   }
+
 }
