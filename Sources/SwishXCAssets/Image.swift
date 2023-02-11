@@ -55,9 +55,9 @@ public enum Image: CaseIterable, Encodable {
   var filename: String {
     switch self.data.scale {
     case .one:
-      return "AppIcon-\(self.data.pixelWidth).png"
+      return "AppIcon-\(self.data.idiom.rawValue)-\(self.data.pixelWidth).png"
     case .two, .three:
-      return "AppIcon-\(self.data.pixelWidth)-\(self.data.baseWidth)\(self.data.scale.fileLabel).png"
+      return "AppIcon-\(self.data.idiom.rawValue)-\(self.data.pixelWidth)-\(self.data.baseWidth)\(self.data.scale.fileLabel).png"
     }
   }
   
@@ -70,9 +70,9 @@ public enum Image: CaseIterable, Encodable {
   
   public func encode(to encoder: Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode("\(data.baseWidth)x\(data.baseWidth)", forKey: .size)
     try container.encode(filename, forKey: .filename)
     try container.encode(data.idiom, forKey: .idiom)
     try container.encode(data.scale.jsonLabel, forKey: .scale)
+    try container.encode("\(data.baseWidth)x\(data.baseWidth)", forKey: .size)
   }
 }
