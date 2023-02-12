@@ -28,7 +28,8 @@ import SwishXCAssets
 struct AppIconMain {
   static func main() async throws {
     let svgPath = "path/to/AppIcon.svg"
-    try await AppIcon(inputSVG: svgPath, outputDir: "MyApp").render()
+    try await AppIcon(inputSVG: svgPath, outputDir: "MyApp")
+      .render(platforms: [.iPhone, .iPad, .mac])
   }
 }
 ```
