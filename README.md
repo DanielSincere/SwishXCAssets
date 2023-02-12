@@ -10,7 +10,7 @@ In your Swish's `Package.swift`
 
 ```swift
   dependencies: [
-  .package(url: "https://github.com/FullQueueDeveloper/SwishXCAssets.git", from: "0.1.0"),
+  .package(url: "https://github.com/FullQueueDeveloper/SwishXCAssets.git", from: "0.3.2"),
   // ...
   ],
   targets: [
